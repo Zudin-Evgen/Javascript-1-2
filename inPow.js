@@ -1,5 +1,6 @@
 // Задание №1:
 
+
 function inPow(num, pow) {
   if(pow === 0) {
     return console.log('Любое число в нулевой степени равняется единице');
