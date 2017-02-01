@@ -18,7 +18,6 @@ function compareNames(){
   return false;
 }
 
-
 //Начало программы:
 alert('Введите 5 имен по очереди:');
 for(var names = [], i = 0; i < 5; enterNames());
