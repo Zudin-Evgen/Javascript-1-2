@@ -2,23 +2,20 @@
 
 function enterNames() {
   i++;
-  names.push(prompt('Введите иммя №' + i));
+  names.push(prompt('Введите имя №' + i));
 }
 
-function compareNames(){
-  user = prompt('Введите имя пользователя:');
+function compareNames(user){
   for(var name in names) {
     if (user == names[name]) {
-      alert(user + ', вы успешно вошли в систему!');
-      return true;
+      return alert(user + ', вы успешно вошли в систему!');
     }
-    i++;
   }
-  alert('Ошибка!Такого пользователя в базе данных - не существует!');
-  return false;
+  return alert('Ошибка!Такого пользователя в базе данных - не существует!');
 }
 
 //Начало программы:
 alert('Введите 5 имен по очереди:');
 for(var names = [], i = 0; i < 5; enterNames());
-for(var user, i = 0; compareNames() === undefined; compareNames());
+u = prompt('Введите имя пользователя:');
+compareNames(u);
