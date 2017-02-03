@@ -1,6 +1,6 @@
 var n, p;
-n = checkIfEmpty(prompt('Введите число, которое нужно возвести в степень:'));
-p = checkIfEmpty(prompt('Введите степень числа:'));
+n = +checkIfEmpty(checkIfString(prompt('Введите число, которое нужно возвести в степень:').replace(/\s/g,'')));
+p = +checkIfEmpty(checkIfString(prompt('Введите степень числа:').replace(/\s/g,'')));
 inPow(n, p);
 
 
@@ -25,7 +25,14 @@ function multiplyNumber(num, start, pow) {
 
 function checkIfEmpty(value) {
   while (value === "") {
-    value = prompt('Вы ввели пустое значение!Введите любую цифру...');
+    value = checkIfString(prompt('Вы ввели пустое значение!Введите любую цифру...').replace(/\s/g,''));
+  }
+  return value;
+}
+
+function checkIfString(value) {
+  while (isNaN(value)) {
+    value = +checkIfEmpty(prompt('Вы ввели в значении БУКВУ(ы)!А нужны - цифры').replace(/\s/g,''));
   }
   return value;
 }
