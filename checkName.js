@@ -2,13 +2,23 @@
 var user;
 alert('Введите 5 имен по очереди:');
 for(var names = [], i = 0; i < 5; enterNames());
-user = checkIfEmpty(prompt('Введите имя пользователя:').replace(/(^\s+|\s+$)/g,''));
+user = isValid(prompt('Введите имя пользователя:'));
 compareNames(user);
+
+function isValid(value) {
+  while(value === null || value.replace(/(^\s+|\s+$)/g,'') === "") {
+    if (value === null) value = prompt('Вы ввели NULL. Введите другое значение:');
+    else if (value.replace(/(^\s+|\s+$)/g,'') === "") {
+    value = prompt('Вы ввели пустую строку. Введите другое значение:');
+    }
+  }
+  return value.replace(/(^\s+|\s+$)/g,'');
+}
 
 //Функция ввода имен в массив
 function enterNames() {
   i++;
-  names.push(checkIfEmpty(prompt('Введите имя №' + i).replace(/(^\s+|\s+$)/g,'')));
+  names.push(isValid(prompt('Введите имя №' + i)));
 }
 
 //Функция сравнения имени юзера с именами в массиве
@@ -19,12 +29,4 @@ function compareNames(u){
     }
   }
   return alert('Ошибка!Такого пользователя в базе данных - не существует!');
-}
-
-//Функция проверки на пустую строку.
-function checkIfEmpty(value) {
-  while (value === "") {
-    value = prompt('Вы ввели пустую строку!Введите больше 1 символа!').replace(/(^\s+|\s+$)/g,'');
-  }
-  return value;
 }

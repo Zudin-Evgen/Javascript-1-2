@@ -1,8 +1,19 @@
 var n, p;
-n = +checkIfEmpty(checkIfString(prompt('Введите число, которое нужно возвести в степень:').replace(/\s/g,'')));
-p = +checkIfEmpty(checkIfString(prompt('Введите степень числа:').replace(/\s/g,'')));
+n = +isValid(prompt('Введите число, которое нужно возвести в степень:'));
+p = +isValid(prompt('Введите степень числа:'));
 inPow(n, p);
 
+
+function isValid(value) {
+  while (value === null || value.replace(/\s/g,'') === "" || isNaN(value)) {
+    if(value === null) value = prompt('Вы ввели NULL. Введите другое значение:');
+    else if (value.replace(/\s/g, '') === "") {
+      value = prompt('Вы ввели пустую строку. Введите другое значение:');
+    }
+    else if (isNaN(value)) value = prompt('Вы ввели буквы в значении. Введите только цифры');
+  }
+  return value.replace(/\s/g,'');
+}
 
 function inPow(num, pow) {
   var start = num;
@@ -21,18 +32,4 @@ function multiplyNumber(num, start, pow) {
     num*=start;
   }
   return num;
-}
-
-function checkIfEmpty(value) {
-  while (value === "") {
-    value = checkIfString(prompt('Вы ввели пустое значение!Введите любую цифру...').replace(/\s/g,''));
-  }
-  return value;
-}
-
-function checkIfString(value) {
-  while (isNaN(value)) {
-    value = +checkIfEmpty(prompt('Вы ввели в значении БУКВУ(ы)!А нужны - цифры').replace(/\s/g,''));
-  }
-  return value;
 }
